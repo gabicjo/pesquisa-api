@@ -8,4 +8,4 @@ CORS(app)
 
 app.register_blueprint(dados_bp)
 
-app.run()
+app.run(port=5001)
