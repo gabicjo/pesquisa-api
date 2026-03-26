@@ -10,6 +10,7 @@ COLUNAS_VALIDAS = {
 }
 
 def receber_dados_da_api(dados: dict) -> None:
+    
     dados_filtrados = {k: v for k, v in dados.items() if k in COLUNAS_VALIDAS}
 
     if "idade" in dados_filtrados:
@@ -17,6 +18,31 @@ def receber_dados_da_api(dados: dict) -> None:
 
     conexao = sqlite3.connect("banco.db")
     cursor = conexao.cursor()
+
+    cursor.execute("""
+CREATE TABLE IF NOT EXISTS respostas (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT,
+    idade INTEGER,
+    usaFones TEXT,
+    tempoFones TEXT,
+    volumeUso TEXT,
+    somAltoSemUso TEXT,
+    fonesAmbienteBarulhento TEXT,
+    aumentaVolumeAbafar TEXT,
+    zumbido TEXT,
+    dificuldadeEntenderFala TEXT,
+    volumeTvCelular TEXT,
+    dorAposSomAlto TEXT,
+    audicaoAbafada TEXT,
+    lugaresSomMuitoAlto TEXT,
+    usaProtecao TEXT,
+    otiteOuInfeccao TEXT,
+    fezExameAudicao TEXT,
+    ouvidoTampado TEXT,
+    familiaProblemasAuditivos TEXT
+)
+""")
 
     colunas = ', '.join(dados_filtrados.keys())
     placeholders = ', '.join(['?'] * len(dados_filtrados))
