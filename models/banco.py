@@ -18,7 +18,7 @@ def receber_dados_da_api(dados: dict) -> None:
 
     conexao = sqlite3.connect("banco.db")
     cursor = conexao.cursor()
-
+    
     cursor.execute("""
 CREATE TABLE IF NOT EXISTS respostas (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
